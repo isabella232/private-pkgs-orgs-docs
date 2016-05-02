@@ -6,6 +6,7 @@
 * [Managing Teams](managing-teams/README.md)
   * [Roles](managing-teams/roles.md)
   * [The Developers Team](managing-teams/the-developers-team.md)
+  * [Teams](managing-teams/teams.md)
   * [Sponsorships](managing-teams/sponsorships.md)
 * [Managing Packages](managing-packages/README.md)
   * [Scoping New Packages](managing-packages/scoping-new-packages.md)
