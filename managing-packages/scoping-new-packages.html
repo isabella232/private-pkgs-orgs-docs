@@ -53,7 +53,7 @@
         data-chapter-title="Scoping New Packages"
         data-filepath="managing-packages/scoping-new-packages.md"
         data-basepath=".."
-        data-revision="Mon May 02 2016 17:38:06 GMT+0000 (UTC)"
+        data-revision="Tue May 03 2016 15:10:56 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -314,6 +314,22 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="scoping-new-packages">Scoping New Packages</h1>
+<p>Once you have an Organization set up, you&apos;ll want to scope packages
+to that Organization.</p>
+<p>Users with <a href="orgs/roles#super-admin">Super Admin</a>, <a href="orgs/roles#team-admin">Team Admin</a>, and <a href="orgs/roles#member">Member</a> roles can 
+perform this action.</p>
+<h2 id="scoping-a-new-package">Scoping a New Package</h2>
+<p>To do this, run these commands in the root directory of your package:</p>
+<pre><code>&gt; npm init --scope=&lt;org&gt;
+&gt; npm publish
+</code></pre><p>... where <code>&lt;org&gt;</code> is the name of your Organization.</p>
+<h2 id="setting-your-organization-as-default-scope">Setting your Organization as Default Scope</h2>
+<p>If you are using Organizations, there is a good chance that you&apos;ll
+be using the Organization scope regularly.</p>
+<p>To save yourself some typing, you can set your Organization as your
+default scope:</p>
+<pre><code>npm config set scope &lt;org&gt;
+</code></pre><p>... where <code>&lt;org&gt;</code> is the name of your Organization.</p>
 
                     
                     </section>

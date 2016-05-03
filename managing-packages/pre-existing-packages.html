@@ -51,7 +51,7 @@
         data-chapter-title="Pre-Existing Packages"
         data-filepath="managing-packages/pre-existing-packages.md"
         data-basepath=".."
-        data-revision="Mon May 02 2016 17:38:06 GMT+0000 (UTC)"
+        data-revision="Tue May 03 2016 15:10:56 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -312,7 +312,61 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="preexisting-packages">Pre-Existing Packages</h1>
-
+<h2 id="restrictions">Restrictions</h2>
+<p>Currently, it is not possible to change the scope of a pre-existing
+public or private, scoped or not, package to an Organization.</p>
+<p>Specifically, given a private, scoped package <code>@ag_dubs/foo</code>,
+there is currently no way to make that exact package scoped to
+the Organization, <code>@ag_org</code>, i.e. <code>@ag_org/foo</code> without creating
+a new package.</p>
+<p>However, Organization members who are either a </p>
+<ul>
+<li><a href="orgs/roles#super-admin">Super Admin</a>, or</li>
+<li><a href="orgs/roles#team-admin">Team Admin</a></li>
+</ul>
+<p>that are also:</p>
+<ul>
+<li>an admin member of the package&apos;s org, for org-scoped packages</li>
+<li>the user, for user-scoped packages</li>
+</ul>
+<p>and, as of <code>npm@3.5.0/npm@2.14.12</code>:</p>
+<ul>
+<li>the last publisher on a public package</li>
+</ul>
+<p>... are able to grant Organization team access to packages that are
+not scoped within the Organization.</p>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><p><code>meow-org</code> Super Admin, Irina, is also a Team Admin for <code>pizza-org</code>.
+Irina can grant the <code>meow-org/cyborgs</code> team access to the 
+<code>pizza-org/pepperoni</code> package.</p>
+</li>
+<li><p><code>puppyco/corgis</code> Team Admin, Lewis, has a personal private package, 
+<code>@lewis/corgis</code>. Lewis can grant the <code>puppyco/corgis</code> team access
+to his <code>@lewis/corgis</code> package.</p>
+</li>
+<li><p><code>cactus-inc</code> Super Admin, Corey, was also the last person to publish
+the public package, <code>bdaypresent</code>. Corey can grant the 
+<code>cactus-inc/friends</code> team access to the <code>bdaypresent</code> package.</p>
+</li>
+</ul>
+<p>(*yup. this is weird. we know.)</p>
+<p>Note: It is possible to migrate a User scope to an Organization scope.
+For more information on that check out the
+<a href="orgs/setup#migrating-an-existing-username-to-an-org">Migrating a Current User Scope to an Org</a> in the <a href="orgs/setup">Creating an Org
+documentation</a>.</p>
+<h2 id="granting-team-access-to-a-package">Granting Team Access to a Package</h2>
+<p>So, let&apos;s say you have a package <code>@ag_dubs/foo</code> that you would like to
+collaborate on within the Organization <code>@ag_org</code>.</p>
+<p>First, ensure that you have the correct permissions. The user must:</p>
+<ul>
+<li>Be a <a href="orgs/roles#super-admin">Super Admin</a> or <a href="orgs/roles#team-admin">Team Admin</a> in the Organization</li>
+<li>Be an admin of the package, <code>@ag_dubs/foo</code></li>
+</ul>
+<p>Then, you can <a href="orgs/package-access#granting-access">grant team access to a package</a>, as though it were scoped
+to the Organization:</p>
+<pre><code>&gt; &gt; npm access grant &lt;read-only|read-write&gt; &lt;org:team&gt; @ag_dubs/foo
+</code></pre>
                     
                     </section>
                 

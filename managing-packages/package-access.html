@@ -53,7 +53,7 @@
         data-chapter-title="Package Access"
         data-filepath="managing-packages/package-access.md"
         data-basepath=".."
-        data-revision="Mon May 02 2016 17:38:06 GMT+0000 (UTC)"
+        data-revision="Tue May 03 2016 15:10:56 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -314,7 +314,57 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="package-access">Package Access</h1>
-
+<p>Once you have scoped a package to your Organization, users with 
+<a href="orgs/roles#super-admin">Super Admin</a> or <a href="orgs/roles#team-admin">Team Admin</a> roles in your Organization can
+<a href="#granting-access">grant</a>, <a href="#revoking-access">revoke</a>, and <a href="#monitor-access">monitor</a> team access to that
+package.</p>
+<h2 id="access-levels">Access Levels</h2>
+<p>There are two levels of access you can provide:</p>
+<ul>
+<li>read-only: can use the package, e.g. <code>npm install</code></li>
+<li>read-write: can update the package, e.g. <code>npm publish</code></li>
+</ul>
+<h2 id="granting-access">Granting Access</h2>
+<p>To grant access to a team, a <a href="orgs/roles#team-admin">Team Admin</a> can type:</p>
+<pre><code>&gt; npm access grant &lt;read-only|read-write&gt; &lt;org:team&gt; [&lt;package&gt;]
+</code></pre><p>The <code>grant</code> command takes 3 arguments, in order:</p>
+<ul>
+<li>access level: <code>read-only</code> or <code>read-write</code></li>
+<li>scope: <code>&lt;org:team&gt;</code>, e.g. <code>npminc:wombats</code></li>
+<li>package: the name of a package
+The package must be:<ul>
+<li><a href="orgs/scoping-packages">scoped to the Organization</a>, or</li>
+<li>be scoped package that a <a href="orgs/roles#super-admin">Super Admin</a> or <a href="orgs/roles#team-admin">Team Admin</a> has
+write-access to
+<strong>Package name is optional if you are executing the command in a
+directory with a <a href="files/package.json"><code>package.json</code></a>.</strong></li>
+</ul>
+</li>
+</ul>
+<p>For example, to  grant read-write access the <code>npm-docs</code> package to
+the <code>@npminc</code> org&apos;s <code>wombats</code> team, a user who:</p>
+<ul>
+<li>is a <a href="orgs/roles#super-admin">Super Admin</a> or <a href="orgs/roles#team-admin">Team Admin</a> for the Organization</li>
+<li>has write access to the <code>npm-docs</code> package</li>
+</ul>
+<p>...would do the following:</p>
+<pre><code>&gt; npm access grant read-write npminc:wombats npm-docs
+</code></pre><h2 id="revoking-access">Revoking Access</h2>
+<p>To revoke team access to a package, a <a href="orgs/roles#team-admin">Team Admin</a> can type:</p>
+<pre><code>&gt; npm access revoke &lt;org:team&gt; [&lt;package&gt;]
+</code></pre><p>Again, the <code>package</code> argument is optional if this command is
+executed in a directory containing a <a href="files/package.json"><code>package.json</code></a>.</p>
+<h2 id="monitor-access">Monitor Access</h2>
+<p>You can check whether you have successfully granted or revoked
+team access to a package using the <code>npm access ls-packages</code> and
+<code>npm access ls-collaborators</code> command.</p>
+<h3 id="view-a-team-members-package-access">View a Team Member&apos;s Package Access</h3>
+<pre><code>npm access ls-packages &lt;org&gt; &lt;user&gt;
+</code></pre><h3 id="view-a-teams-package-access">View a Team&apos;s Package Access</h3>
+<pre><code>npm access ls-packages &lt;org:team&gt;
+</code></pre><h3 id="list-teams-with-access-to-a-package">List Teams with Access to a Package</h3>
+<pre><code>npm access ls-collaborators &lt;pkg&gt;
+</code></pre>
                     
                     </section>
                 
